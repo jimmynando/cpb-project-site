@@ -1,0 +1,19 @@
+@import '../../../assets/style/config.scss';
+
+.side-bar {
+    background-color: $synth-purple-dark;
+    color: #fff;
+    min-width: 200px;
+    padding: 15px;
+
+    a {
+        color: $synth-pink;
+        width: 100%;
+        display: block;
+        padding: 10px 0;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}

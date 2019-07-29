@@ -13,7 +13,8 @@ class Finances extends Component {
     render() {
         const { finances } = this.props;
         return (
-            <div>
+            <div className="container-inner-flex">
+                <h1>Listar Gastos</h1>
                 {finances.map(finance => (
                     <p key={finance._id}>{finance.description}</p>
                 ))}

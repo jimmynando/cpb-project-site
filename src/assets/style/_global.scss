@@ -1,0 +1,17 @@
+html
+, body
+, #root
+, .App {
+    height: 100%;
+}
+
+.container-flex {
+    display: flex;
+    justify-content: start;
+    min-height: unquote("calc(100% - 50px)");
+}
+
+.container-inner-flex {
+    width: 100%;
+    padding: 30px;
+}
