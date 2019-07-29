@@ -16,10 +16,10 @@ class AddFinance extends Component {
         super(props);
 
         this.state = {
-            descriptionFinance: "",
-            valueFinance: "",
-            dateFinance: "",
-            categoryFinance: ""
+            description: "",
+            value: "",
+            data: "",
+            category: ""
         }
     }
 
@@ -29,17 +29,25 @@ class AddFinance extends Component {
             [name]: value
         })
     }
+
+    onSubmitHandler(e) {        
+        e.preventDefault();
+        this.props.addFinance({ finance: this.state }).then(() => {
+            this.setState({}); 
+        });    
+        
+    }
     
     render() {
-        const { finances } = this.props;
         return (
             <div className="container-inner-flex">
                 <h1>Adicionar Gastos</h1>
-                <form onSubmit="">
-                    <SimpleText label="Descrição" name="descriptionFinance" onChange={e => this.onChangeHandler(e)} />
-                    <SimpleText label="Valor" name="valueFinance" onChange={e => this.onChangeHandler(e)} />
-                    <SimpleText label="Data" name="dateFinance" onChange={e => this.onChangeHandler(e)} />
-                    <SimpleText label="Categoria" name="categoryFinance" onChange={e => this.onChangeHandler(e)} />
+                <form onSubmit={this.onSubmitHandler.bind(this)}>
+                    <SimpleText label="Descrição" name="description" onChange={e => this.onChangeHandler(e)} />
+                    <SimpleText label="Valor" name="value" onChange={e => this.onChangeHandler(e)} />
+                    <SimpleText label="Data" name="data" onChange={e => this.onChangeHandler(e)} />
+                    <SimpleText label="Categoria" name="category" onChange={e => this.onChangeHandler(e)} />
+                    <button className="btn btn-primary">Salvar</button>
                 </form>
             </div>
         )
