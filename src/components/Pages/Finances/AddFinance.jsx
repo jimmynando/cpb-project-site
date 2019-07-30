@@ -6,6 +6,7 @@ import { connect } from 'react-redux';
 import { addFinance } from '../../../actions/financeActions';
 
 import SimpleText from '../../SimpleText/SimpleText';
+import SimpleDate from '../../SimpleDate/SimpleDate';
 
 class AddFinance extends Component {
     componentDidMount() {
@@ -17,7 +18,7 @@ class AddFinance extends Component {
 
         this.state = {
             description: "",
-            value: "",
+            valor: "",
             data: "",
             category: ""
         }
@@ -44,8 +45,8 @@ class AddFinance extends Component {
                 <h1>Adicionar Gastos</h1>
                 <form onSubmit={this.onSubmitHandler.bind(this)}>
                     <SimpleText label="Descrição" name="description" onChange={e => this.onChangeHandler(e)} />
-                    <SimpleText label="Valor" name="value" onChange={e => this.onChangeHandler(e)} />
-                    <SimpleText label="Data" name="data" onChange={e => this.onChangeHandler(e)} />
+                    <SimpleText label="Valor" name="valor" onChange={e => this.onChangeHandler(e)} />
+                    <SimpleDate label="Data" name="data" onChange={e => this.onChangeHandler(e)} />
                     <SimpleText label="Categoria" name="category" onChange={e => this.onChangeHandler(e)} />
                     <button className="btn btn-primary">Salvar</button>
                 </form>

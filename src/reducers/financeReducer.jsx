@@ -15,6 +15,11 @@ const contactReducer = (state = initialState, action) => {
                 ...state,
                 finances: action.payload
             }
+        case "finances:DELETE_FINANCE":
+            return {
+                ...state,
+                finances: state.finances.filter(f => f._id !== action.payload)
+            }
         default:
             return state;
     }
