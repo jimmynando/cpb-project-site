@@ -1,4 +1,4 @@
-import { GET_FINANCES, ADD_FINANCE } from './types';
+import { GET_FINANCES, ADD_FINANCE, DELETE_FINANCE } from './types';
 import axios from 'axios';
 
 
@@ -8,7 +8,7 @@ export const getFinances = () => async dispatch => {
     dispatch({
         type: GET_FINANCES,
         payload: res.data
-    })
+    });
 }
 
 export const addFinance = (finance) => async dispatch => {
@@ -17,5 +17,14 @@ export const addFinance = (finance) => async dispatch => {
     dispatch({
         type: ADD_FINANCE,
         payload: res.data
-    })  
+    });
+}
+
+export const deleteFinance = (id) => async dispatch => {
+    await axios.delete(`http://localhost:3001/finance/${id}`);
+
+    dispatch({
+        type: DELETE_FINANCE,
+        payload: id
+    });
 }
