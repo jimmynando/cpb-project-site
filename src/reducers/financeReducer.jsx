@@ -5,7 +5,12 @@ const initialState = {
 
 const contactReducer = (state = initialState, action) => {
     switch (action.type) {
-        case "GET_FINANCES":
+        case "finances:GET_FINANCES":
+            return {
+                ...state,
+                finances: action.payload
+            }
+        case "finances:ADD_FINANCE":
             return {
                 ...state,
                 finances: action.payload
