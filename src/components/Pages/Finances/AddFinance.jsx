@@ -9,10 +9,6 @@ import SimpleText from '../../SimpleText/SimpleText';
 import SimpleDate from '../../SimpleDate/SimpleDate';
 
 class AddFinance extends Component {
-    componentDidMount() {
-        this.props.addFinance();
-    }
-    
     constructor(props) {
         super(props);
 
