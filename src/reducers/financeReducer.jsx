@@ -25,6 +25,11 @@ const contactReducer = (state = initialState, action) => {
                 ...state,
                 finance: action.payload
             }
+        case "finances:UPDATE_FINANCE":
+            return {
+                ...state,
+                finance: action.payload
+            }
         default:
             return state;
     }

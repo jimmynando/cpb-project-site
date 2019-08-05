@@ -8,6 +8,8 @@ import { editFinance, getFinance } from '../../../actions/financeActions';
 import SimpleText from '../../SimpleText/SimpleText';
 import SimpleDate from '../../SimpleDate/SimpleDate';
 
+import { dateToStandard } from '../../../helpers/global';
+
 class EditFinance extends Component {
     constructor() {
         super();
@@ -25,7 +27,7 @@ class EditFinance extends Component {
         this.setState({
             description,
             valor,
-            data,
+            data: dateToStandard(data),
             category
         })
     }
@@ -45,7 +47,17 @@ class EditFinance extends Component {
     onSubmitHandler(e) {
         e.preventDefault();
 
-        this.props.editFinance({ finance: this.state }).then(() => {
+        const { description, valor, data, category } = this.state;
+        const { idFinance } = this.props.match.params;
+
+        const finance = {
+            description,
+            valor,
+            data,
+            category
+        }
+
+        this.props.editFinance(idFinance, { finance: finance }).then(() => {
             this.setState({});
         });
 
@@ -70,7 +82,7 @@ class EditFinance extends Component {
 }
 
 EditFinance.propTypes = {
-    finance: PropTypes.object.isRequired,
+    finance: PropTypes.object,
     editFinance: PropTypes.func.isRequired,
     getFinance: PropTypes.func.isRequired
 }

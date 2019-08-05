@@ -7,6 +7,8 @@ import { getFinances, deleteFinance } from '../../../actions/financeActions';
 
 import { Link } from 'react-router-dom';
 
+import { dateToNacional } from '../../../helpers/global';
+
 class Finances extends Component {
     componentDidMount() {
         this.props.getFinances();
@@ -40,7 +42,7 @@ class Finances extends Component {
                                 <td>{finance.description}</td>
                                 <td>{finance.category}</td>
                                 <td>{finance.valor}</td>
-                                <td>{finance.data}</td>
+                                <td>{dateToNacional(finance.data)}</td>
                                 <td className="cpb-center-around">
                                     <Link to={`/editfinance/${finance._id}`} className="btn btn-primary">Editar</Link>
                                     <button type="button" className="btn btn-primary" onClick={() => this.onDeleteHandler(finance._id)}>Deletar</button>
