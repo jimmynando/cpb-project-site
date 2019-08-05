@@ -6,6 +6,7 @@ import Footer from '../Templates/Footer/Footer';
 import Menu from '../Templates/Menu/Menu';
 import Finances from '../Pages/Finances/Finances';
 import AddFinance from '../Pages/Finances/AddFinance';
+import EditFinance from '../Pages/Finances/EditFinance';
 
 import { Provider } from 'react-redux';
 import store from '../../store';
@@ -25,6 +26,7 @@ function App() {
               <Route exact path="/" component={Finances} />
               <Route exact path="/finance" component={Finances} />
               <Route exact path="/addfinance" component={AddFinance} />
+              <Route exact path="/editfinance/:idFinance" component={EditFinance} />
             </Switch>
           </div>     
           <Footer />  

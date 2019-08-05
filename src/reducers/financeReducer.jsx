@@ -20,6 +20,11 @@ const contactReducer = (state = initialState, action) => {
                 ...state,
                 finances: state.finances.filter(f => f._id !== action.payload)
             }
+        case "finances:GET_FINANCE":
+            return {
+                ...state,
+                finances: action.payload
+            }
         default:
             return state;
     }
