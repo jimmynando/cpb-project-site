@@ -20,6 +20,15 @@ export const addFinance = (finance) => async dispatch => {
     });
 }
 
+export const editFinance = (finance) => async dispatch => {
+    const res = await axios.put('http://localhost:3002/finance/', finance);
+
+    dispatch({
+        type: ADD_FINANCE,
+        payload: res.data
+    });
+}
+
 export const deleteFinance = (id) => async dispatch => {
     await axios.delete(`http://localhost:3002/finance/${id}`);
 

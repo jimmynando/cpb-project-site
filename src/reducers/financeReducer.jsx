@@ -23,7 +23,7 @@ const contactReducer = (state = initialState, action) => {
         case "finances:GET_FINANCE":
             return {
                 ...state,
-                finances: action.payload
+                finance: action.payload
             }
         default:
             return state;

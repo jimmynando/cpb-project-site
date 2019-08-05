@@ -3,26 +3,36 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
-import { addFinance, getFinance } from '../../../actions/financeActions';
+import { editFinance, getFinance } from '../../../actions/financeActions';
 
 import SimpleText from '../../SimpleText/SimpleText';
 import SimpleDate from '../../SimpleDate/SimpleDate';
 
-class AddFinance extends Component {
+class EditFinance extends Component {
+    constructor() {
+        super();
+        this.state = {
+            description: '',
+            valor: '',
+            data: '',
+            category: ''
+        };
+    }    
+
+    componentWillReceiveProps(nextProps, nextState) {
+        const { description, valor, data, category } = nextProps.finances;
+
+        this.setState({
+            description,
+            valor,
+            data,
+            category
+        })
+    }
+
     componentDidMount() {
         const { idFinance } = this.props.match.params;
         this.props.getFinance(idFinance);
-    }
-    
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            description: "",
-            valor: "",
-            data: "",
-            category: ""
-        }
     }
 
     onChangeHandler(e) {
@@ -32,24 +42,26 @@ class AddFinance extends Component {
         })
     }
 
-    onSubmitHandler(e) {        
+    onSubmitHandler(e) {
         e.preventDefault();
-        this.props.addFinance({ finance: this.state }).then(() => {
-            this.setState({}); 
-        });    
-        
+
+        this.props.editFinance({ finance: this.state }).then(() => {
+            this.setState({});
+        });
+
     }
-    
+
     render() {
-        const { finances } = this.props;
+        const { description, valor, data, category } = this.state;
+
         return (
             <div className="container-inner-flex">
-                <h1>Adicionar Gastos</h1>
+                <h1>Editar Gastos</h1>
                 <form onSubmit={this.onSubmitHandler.bind(this)}>
-                    <SimpleText label="Descrição" name="description" onChange={e => this.onChangeHandler(e)} value={finances.description} />
-                    <SimpleText label="Valor" name="valor" onChange={e => this.onChangeHandler(e)} value={finances.valor} />
-                    <SimpleDate label="Data" name="data" onChange={e => this.onChangeHandler(e)} value={finances.data} />
-                    <SimpleText label="Categoria" name="category" onChange={e => this.onChangeHandler(e)} value={finances.category} />
+                    <SimpleText label="Descrição" name="description" onChange={e => this.onChangeHandler(e)} value={description} />
+                    <SimpleText label="Valor" name="valor" onChange={e => this.onChangeHandler(e)} value={valor} />
+                    <SimpleDate label="Data" name="data" onChange={e => this.onChangeHandler(e)} value={data} />
+                    <SimpleText label="Categoria" name="category" onChange={e => this.onChangeHandler(e)} value={category} />
                     <button className="btn btn-primary">Salvar</button>
                 </form>
             </div>
@@ -57,13 +69,14 @@ class AddFinance extends Component {
     }
 }
 
-AddFinance.propTypes = {
-    finances: PropTypes.array.isRequired,
-    addFinance: PropTypes.func.isRequired
-  }
+EditFinance.propTypes = {
+    finance: PropTypes.object.isRequired,
+    editFinance: PropTypes.func.isRequired,
+    getFinance: PropTypes.func.isRequired
+}
 
 const mapStateToProps = (state) => ({
-    finances: state.finance.finances
+    finances: state.finance.finance
 })
 
-export default connect(mapStateToProps, {addFinance, getFinance})(AddFinance)
+export default connect(mapStateToProps, { editFinance, getFinance })(EditFinance)
